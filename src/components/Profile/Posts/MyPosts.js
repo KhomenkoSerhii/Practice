@@ -7,12 +7,22 @@ const MyPosts = props => {
     <Posts message={p.message} likeCount={p.likeCount} />
   ));
 
+const newPostElement = React.createRef()
+
+const handlerClick = () => {
+
+   const text = newPostElement.current.value
+   alert(text)
+}
+
+
+
   return (
     <div>
       <div>My posts</div>
       <div>
-        <textarea name="" id="" cols="30" rows="5"></textarea>
-        <button>Send</button>
+        <textarea ref={newPostElement} ></textarea>
+        <button onClick={handlerClick}>Send</button>
       </div>
       <div>{postsElements}</div>
     </div>
