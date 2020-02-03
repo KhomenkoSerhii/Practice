@@ -18,7 +18,7 @@ const state = {
       { id: 1, message: "qwqwdq11" },
       { id: 2, message: "qwqwd222" },
       { id: 3, message: "qwqwd333" },
-      { id: 3, message: "qwqwd444" },
+    
       { id: 4, message: "qwqwd555" },
       { id: 5, message: "qwqwd666" }
     ]
