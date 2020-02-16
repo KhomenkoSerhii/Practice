@@ -1,6 +1,8 @@
 import React from "react";
 import "./Dialogs.scss";
 import { NavLink } from "react-router-dom";
+import {updateNewMessageBodyCreator, sendMessageCreator} from '../../redux/state'
+
 
 const DialogItem = props => {
   let path = "/dialogs/" + props.id;
@@ -11,48 +13,60 @@ const DialogItem = props => {
   );
 };
 
+const addNewMessages = React.createRef()
+
+// const onSendMessageClick = () => {
+//   const messages = addNewMessages.current.value;
+//   alert(messages)
+// }
+
+
 const Message = props => {
   return <div>{props.message}</div>;
 };
 
-
-
 const Dialogs = props => {
 
-  let dialogsData = [
-    { id: 1, name: 'Dimych' },
-    { id: 2, name: 'Lean' },
-    { id: 3, name: 'Alex' },
-    { id: 4, name: 'Sanyz' },
-    { id: 5, name: 'Omer' }
-  ]
+  const state = props.store.getState().dialogsPage
 
+  const dialogsElements = state.dialogsData.map(d => (
+    <DialogItem name={d.name} id={d.id} />
+  ));
+  const messagesElements = state.messages.map(m => (
+    <Message message={m.message} id={m.id} />
+  ));
+  const newMessageBody = state.newMessageBody;
+
+
+const onNewMessageChange = (e) => {
+  const body = e.target.value
+  props.store.dispatch(updateNewMessageBodyCreator(body))
+}
+
+const onSendMessageClick = () => {
  
-  let dialogMessages = [
-    {id:1, message: 'qwqwdq11'},
-    {id:2, message: 'qwqwd222'},
-    {id:3, message: 'qwqwd333'},
-    {id:3, message: 'qwqwd444'},
-    {id:4, message: 'qwqwd555'},
-    {id:5, message: 'qwqwd666'},
-  ]
-
-  
-  const dialogsElements = dialogsData.map((d) => <DialogItem name={d.name} id={d.id}/>)
-  const messagesElements = dialogMessages.map((m) => <Message message={m.message} id={m.id}/>)
-
+  props.store.dispatch(sendMessageCreator())
+}
   return (
     <div className="dialogs">
-      <div className='dialogsItems'>
-     {dialogsElements}
-      </div>
-          <div className="messages">
-        {messagesElements}
-           
-          </div>
-      
+      <div className="dialogsItems">{dialogsElements}</div>
+      <div className="messages">
+       <div>{messagesElements}</div> 
+
+       <div>
+         <div> <textarea 
+         value={newMessageBody} 
+         ref={addNewMessages} 
+         placeholder='Enter your message'
+         onChange={onNewMessageChange}
+         ></textarea> </div>
+         <div> <button onClick={onSendMessageClick}>Send</button> </div>
+       </div>
+
+        </div>
+     
     </div>
-        );
-      };
-      
-      export default Dialogs;
+  );
+};
+
+export default Dialogs;
