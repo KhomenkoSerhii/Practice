@@ -1,7 +1,7 @@
 import React from "react";
 import "./Dialogs.scss";
 import { NavLink } from "react-router-dom";
-import {updateNewMessageBodyCreator, sendMessageCreator} from '../../redux/state'
+import {updateNewMessageBodyCreator, sendMessageCreator} from '../../redux/Reducer/Dialogs-reducer'
 
 
 const DialogItem = props => {
@@ -14,11 +14,6 @@ const DialogItem = props => {
 };
 
 const addNewMessages = React.createRef()
-
-// const onSendMessageClick = () => {
-//   const messages = addNewMessages.current.value;
-//   alert(messages)
-// }
 
 
 const Message = props => {
