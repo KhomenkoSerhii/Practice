@@ -5,14 +5,17 @@ const Navbar = () => {
   return (
     <nav className="nav">
       <div>
-        <NavLink to="/Profile">Profile</NavLink>
+        <NavLink to="/ProfileContainer">Profile</NavLink>
       </div>
       <div>
         <NavLink to="/Dialogs">Messages</NavLink>
       </div>
-    <div>Lorem1</div>
-    <div>Lorem2</div>
-    <div>Lorem3</div>
+      <div>
+        <NavLink to='/Users'>Users</NavLink>
+        </div>
+      <div>News</div>
+      <div>Music</div>
+      <div>Settings</div>
 
     </nav>
   );
