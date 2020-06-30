@@ -2,7 +2,7 @@ const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
 
 const initialState = {
-    dialogsData: [
+    dialogs: [
       { id: 1, name: "Dimych" },
       { id: 2, name: "Lean" },
       { id: 3, name: "Alex" },
